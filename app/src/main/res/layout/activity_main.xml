@@ -40,20 +40,6 @@
 
     <Button
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:id="@+id/buttonKanjiDrillJapanese"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/kanji_drill_japanese_button"
-        android:onClick="onClickButtonKanjiDrillJapanese" />
-
-    <Button
-        android:id="@+id/buttonKanjiDrillEnglish"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/kanji_drill_english_button"
-        android:onClick="onClickButtonKanjiDrillEnglish" />
-
-    <Button
         android:id="@+id/buttonKanjiTraining"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

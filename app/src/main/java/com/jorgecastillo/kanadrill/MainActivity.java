@@ -62,18 +62,6 @@ public class MainActivity extends EveryActivity {
         startActivity(intent);
     }
 
-    public void onClickButtonKanjiDrillEnglish(View view){
-
-        Intent intent = new Intent(this, KanjiDrillEnglishActivity.class);
-        startActivity(intent);
-    }
-
-    public void onClickButtonKanjiDrillJapanese(View view){
-
-        Intent intent = new Intent(this, KanjiDrillJapaneseActivity.class);
-        startActivity(intent);
-    }
-
     public void onClickButtonKanjiTraining(View view){
 
         Intent intent = new Intent(this, KanjiTrainingActivity.class);

@@ -13,7 +13,7 @@
     <string name="katakana_train_button">Katakana Training</string>
     <string name="kanji_drill_english_button">Kanji Drill English</string>
     <string name="kanji_drill_japanese_button">Kanji Drill Japanese</string>
-    <string name="kanji_training_button">Kanji Training</string>
+    <string name="kanji_training_button">Jōyō kanji</string>
     <string name="next_button">Next</string>
     <string name="back_button">Back</string>
     <string name="wrong_kana">Wrong Kana</string>
