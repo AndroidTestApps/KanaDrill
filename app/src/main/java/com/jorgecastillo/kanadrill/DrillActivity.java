@@ -1,10 +1,14 @@
 package com.jorgecastillo.kanadrill;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.FileOutputStream;
 
 public class DrillActivity extends EveryActivity {
 
@@ -20,6 +24,7 @@ public class DrillActivity extends EveryActivity {
 
   protected String[] meaning;
   protected String[] japanese;
+  protected long startTime, tookyou;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +54,7 @@ public class DrillActivity extends EveryActivity {
       setButtons();
 
     }
-
+    startTime = System.currentTimeMillis();
   }
 
   public void setArrays(){}
@@ -89,7 +94,19 @@ public class DrillActivity extends EveryActivity {
   private void setButtons() {
 
     if (count >= upto) {
-        System.exit(0);
+      tookyou = System.currentTimeMillis() - startTime;
+      String filename = "took_you";
+      String took_you = "" + (tookyou / 1000);
+      FileOutputStream outputStream;
+      Context mContext = getApplicationContext();
+      try {
+        outputStream = mContext.openFileOutput(filename, Context.MODE_PRIVATE);
+        outputStream.write(took_you.getBytes());
+        outputStream.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      System.exit(0);
     }
 
 

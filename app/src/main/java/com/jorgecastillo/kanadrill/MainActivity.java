@@ -8,6 +8,11 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class MainActivity extends EveryActivity {
 	
 	private SharedPreferences myPreferences;
@@ -35,7 +40,18 @@ public class MainActivity extends EveryActivity {
 			startActivity(intent);
 
 		}
-		
+
+        try{
+            FileInputStream input = openFileInput("took_you");
+            String took_you = new Scanner(input).useDelimiter("\\Z").next();
+            input.close();
+            Toast.makeText(getApplicationContext(),"It took you: " + took_you + " seconds!",Toast.LENGTH_LONG)
+                    .show();
+            File mFile = new File(getFilesDir(),"took_you");
+            mFile.delete();
+        } catch (FileNotFoundException fnfe){} catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 
     public void onClickButtonHiraganaDrill(View view){
