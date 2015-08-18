@@ -37,7 +37,7 @@ public class EveryActivity extends Activity implements GestureDetector.OnGesture
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.training, menu);
+    getMenuInflater().inflate(R.menu.main, menu);
     return true;
   }
 
@@ -48,19 +48,6 @@ public class EveryActivity extends Activity implements GestureDetector.OnGesture
     switch (id){
       case R.id.action_settings:
         intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-        return true;
-      case R.id.action_contact:
-        intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "vookat@gmail.com", null));
-        intent.putExtra(Intent.EXTRA_SUBJECT, "KanaDrill App - ");
-        startActivity(Intent.createChooser(intent, getResources().getString(R.string.action_contact_title)));
-        return true;
-      case R.id.action_share:
-        String urlToShare = "https://play.google.com/store/apps/details?id=com.jorgecastillo.kanadrill";
-        intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, urlToShare);
-        intent.setPackage("com.facebook.katana");
         startActivity(intent);
         return true;
       default:

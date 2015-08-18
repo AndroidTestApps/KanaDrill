@@ -1,9 +1,19 @@
 package com.jorgecastillo.kanadrill;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Scanner;
 
 public class KanjiTrainingActivity extends EveryActivity {
 
@@ -18,6 +28,8 @@ public class KanjiTrainingActivity extends EveryActivity {
   private String[] kanji;
   private String[] english;
   private String[] kana;
+
+  private String kanji_bookmark = "kanji_bookmar";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +46,14 @@ public class KanjiTrainingActivity extends EveryActivity {
     kana = myResources.getStringArray(R.array.kana);
 
     order = new int[2136];
+    try{
+      FileInputStream input = openFileInput(kanji_bookmark);
+      String count_bookmark = new Scanner(input).useDelimiter("\\Z").next();
+      input.close();
+      count = Integer.parseInt(count_bookmark);
+    } catch (FileNotFoundException fnfe){} catch (Exception e) {
+      e.printStackTrace();
+    }
     CommonCode.orderLinear(upto, order);
     kanjiText.setText(kanji[order[count]]);
     englishText.setText(english[order[count]]);
@@ -80,6 +100,37 @@ public class KanjiTrainingActivity extends EveryActivity {
   public boolean onSingleTapUp(MotionEvent event) {
     rightLeftFling();
     return true;
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    super.onCreateOptionsMenu(menu);
+    getMenuInflater().inflate(R.menu.training, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    int id = item.getItemId();
+    Intent intent;
+    switch (id){
+      case R.id.action_bookmark:
+        String filename = kanji_bookmark;
+        String count_bookmark = "" + count;
+        FileOutputStream outputStream;
+        Context mContext = getApplicationContext();
+        try {
+          outputStream = mContext.openFileOutput(filename, Context.MODE_PRIVATE);
+          outputStream.write(count_bookmark.getBytes());
+          outputStream.close();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        return true;
+      default:
+        break;
+    }
+    return super.onOptionsItemSelected(item);
   }
 
 }
