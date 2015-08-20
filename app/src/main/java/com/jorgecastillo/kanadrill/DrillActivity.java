@@ -109,22 +109,27 @@ public class DrillActivity extends EveryActivity {
       System.exit(0);
     }
 
-
-    int replace = CommonCode.randomInt(4);
-    buttonValues[replace] = order[count];
     for(int i = 0; i < 4; i++){
-
       int val;
-      if(i != replace) {
-        val = CommonCode.randomInt(upto);
-        for (int j = 0; j < i; j++) {
-          while (val == buttonValues[j] || val == buttonValues[replace]) {
-            val = CommonCode.randomInt(upto);
-          }
+      val = CommonCode.randomInt(upto);
+      for (int j = 0; j < i; j++) {
+        while (val == buttonValues[j]) {
+          val = CommonCode.randomInt(upto);
         }
-        buttonValues[i] = val;
       }
+      buttonValues[i] = val;
+    }
 
+    boolean replace = true;
+    for(int i = 0; i < 4; i++){
+      if(buttonValues[i] == order[count]){
+        replace = false;
+        break;
+      }
+    }
+
+    if(replace){
+      buttonValues[CommonCode.randomInt(4)] = order[count];
     }
 		
     gameText.setText(japanese[order[count]]);
