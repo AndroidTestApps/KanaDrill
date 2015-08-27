@@ -15,7 +15,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Scanner;
 
-public class KanjiTrainingActivity extends EveryActivity {
+public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.Callbacks {
+
+  public void goToKanji(int position){
+
+    if(position > 0 && position < 2137){
+      if(position != 830){
+        count = position - 1;
+        setButtons();
+      }
+    }
+  }
 
   private TextView kanjiText, kanaText, englishText;
 
@@ -127,6 +137,10 @@ public class KanjiTrainingActivity extends EveryActivity {
           e.printStackTrace();
         }
         return true;
+      case R.id.action_go_to:
+        GoToDialog dialog = new GoToDialog();
+        dialog.setTitle("Choose a Kanji");
+        dialog.show(getFragmentManager(), "Go To Dialog");
       default:
         break;
     }
