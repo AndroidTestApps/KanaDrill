@@ -1,5 +1,6 @@
 package com.jorgecastillo.kanadrill;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -40,6 +41,7 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
   private String[] kana;
 
   private String kanji_bookmark = "kanji_bookmar";
+  private boolean autoforward = false;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +143,26 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
         GoToDialog dialog = new GoToDialog();
         dialog.setTitle("Choose a Kanji");
         dialog.show(getFragmentManager(), "Go To Dialog");
+      case R.id.action_auto_forward:
+        autoforward = !autoforward;
+        final Activity mactivity = this;
+        new Thread(new Runnable() {
+          public void run() {
+            while (autoforward){
+              mactivity.runOnUiThread(new Runnable() {
+                public void run() {
+                  count++;
+                  setButtons();
+                }
+              });
+              try{
+                Thread.sleep(1000);
+              }catch (Exception e){
+                e.printStackTrace();
+              }
+            }
+          }
+        }).start();
       default:
         break;
     }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="action_auto_forward">Auto Forward</string>
     <string name="action_go_to">Go To</string>
     <string name="action_bookmark">Bookmark</string>
     <string name="app_name">KanaDrill</string>
