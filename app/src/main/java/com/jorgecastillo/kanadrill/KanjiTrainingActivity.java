@@ -138,11 +138,12 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
         } catch (Exception e) {
           e.printStackTrace();
         }
-        return true;
+        break;
       case R.id.action_go_to:
         GoToDialog dialog = new GoToDialog();
         dialog.setTitle("Choose a Kanji");
         dialog.show(getFragmentManager(), "Go To Dialog");
+        break;
       case R.id.action_auto_forward:
         autoforward = !autoforward;
         final Activity mactivity = this;
@@ -163,6 +164,7 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
             }
           }
         }).start();
+        break;
       default:
         break;
     }
