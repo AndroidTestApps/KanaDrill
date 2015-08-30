@@ -146,24 +146,32 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
         break;
       case R.id.action_auto_forward:
         autoforward = !autoforward;
-        final Activity mactivity = this;
-        new Thread(new Runnable() {
-          public void run() {
-            while (autoforward){
-              mactivity.runOnUiThread(new Runnable() {
-                public void run() {
-                  count++;
-                  setButtons();
+        if (autoforward) {
+          final Activity mactivity = this;
+          new Thread(new Runnable() {
+            public void run() {
+              while (autoforward){
+                mactivity.runOnUiThread(new Runnable() {
+                  public void run() {
+                    count++;
+                    if (count == 829) {
+                      count = 830;
+                    }
+                    if (count == (upto - 1)) {
+                      autoforward = false;
+                    }
+                    setButtons();
+                  }
+                });
+                try{
+                  Thread.sleep(2000);
+                }catch (Exception e){
+                  e.printStackTrace();
                 }
-              });
-              try{
-                Thread.sleep(1000);
-              }catch (Exception e){
-                e.printStackTrace();
               }
             }
-          }
-        }).start();
+          }).start();
+        }
         break;
       default:
         break;
