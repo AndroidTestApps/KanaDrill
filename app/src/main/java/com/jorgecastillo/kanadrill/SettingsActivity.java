@@ -131,6 +131,7 @@ public class SettingsActivity extends PreferenceActivity {
 			bindPreferenceSummaryToValue(findPreference("kana_list"));
 			bindPreferenceSummaryToValue(findPreference("order_list"));
 			bindPreferenceSummaryToValue(findPreference("theme_list"));
+			bindPreferenceSummaryToValue(findPreference("autoforward_speed"));
 		}
 	}
 

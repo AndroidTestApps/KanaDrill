@@ -72,6 +72,10 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
     kanaText.setText(kana[order[count]]);
     getActionBar().setTitle("" + (count + 1));
 
+    if (myPreferences.getBoolean("setup_true", false)) {
+      autoforward_speed = Integer.parseInt(myPreferences.getString("autoforward_speed", "1"));
+    }
+
   }
 
   public void rightLeftFling(){
@@ -164,7 +168,7 @@ public class KanjiTrainingActivity extends EveryActivity implements GoToDialog.C
                   }
                 });
                 try{
-                  Thread.sleep(2000);
+                  Thread.sleep(autoforward_speed * 1000);
                 }catch (Exception e){
                   e.printStackTrace();
                 }

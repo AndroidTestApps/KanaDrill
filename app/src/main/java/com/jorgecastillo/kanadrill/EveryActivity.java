@@ -16,6 +16,7 @@ public class EveryActivity extends Activity implements GestureDetector.OnGesture
   protected GestureDetector mDetector;
   protected SharedPreferences myPreferences;
   public int theme_list;
+  public int autoforward_speed = 1;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

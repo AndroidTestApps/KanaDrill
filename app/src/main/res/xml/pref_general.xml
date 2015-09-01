@@ -1,5 +1,15 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/autoforward_options"
+        android:entryValues="@array/autoforward_values"
+        android:key="autoforward_speed"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/autoforward_title" />
+
     <ListPreference
         android:defaultValue="1"
         android:entries="@array/kana_options"
